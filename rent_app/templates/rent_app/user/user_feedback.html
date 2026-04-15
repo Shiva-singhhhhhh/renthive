@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FeedBack Form</title>
+    {% include 'rent_app/common/common_css.html'   %}
+    <style>
+    .feedback-form{
+        background-color:#8785A2;
+        height: auto;
+        padding: 10px;
+        border: 5px solid #5f2c00; 
+        border-radius: 10px;
+        margin: auto;
+        margin-top: 50px;
+        width: 40%;
+    }
+</style>
+</head>
+<body style="background-color:#E5E0D8;">
+{% if messages %}
+
+
+{% for m in messages%}
+<!-- <h1 style="margin-top: 80px;">{{m}}</h1> -->
+<div class="alert alert-secondary alert-dismissible fade show mx-auto text-center" role="alert" style="width: 50%;margin-top: 80px;">
+  <strong>{{m}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
+
+
+{% endfor %}
+
+
+{% endif %}
+
+  <div class="main-div">
+    <!-- header code include here -->
+    {% include 'rent_app/user/user_header.html' %}
+    <div class="container-fluid d-flex" style="background-color: #93DA97; justify-content: center;margin-top: 80px;">
+    <span style="margin-left: 20px; font-size: 30px; justify-content: center;"></span>
+    <h1>📝FeedBack Form📝</h1>
+    </div>
+    <div class="container-fluid d-flex" style="background-color: #eef0e9; justify-content: center;">
+    <span style="margin-left: 20px; font-size: 30px; justify-content: center;"></span>
+    <h4> “Your voice matters to us.” </h4>
+    </div>
+    <!-- FeedBack form code -->
+     <div class="feedback-form">
+        <form action="/user_feedback/" method="post">
+        {% csrf_token %}
+        <input type="hidden" name="pic_path" value={{user_detail.profile_pic}}>
+     <div class="form-floating mb-3">
+        <input type="email" class="form-control" name="email" placeholder="Email"required value={{user_detail.email}} readonly>
+        <label for="email"><i class="fas fa-envelope"></i> Enter Your Email</label>
+     </div>
+     <div class="form-floating mb-3">
+        <input type="Name" class="form-control" name="name" placeholder="Name"required value="{{user_detail.name}}">
+        <label for="name"><i class="fas fa-user"></i> Enter Your Name</label>
+     </div>
+    <div class="form-floating mb-3">
+  <input type="text" class="form-control" name="remark" placeholder="remark" required>
+    <label for="remark"><i class="fas fa-pen"></i> Remark Us:- </label>
+    </div>
+    <div class="form-floating mb-3"> 
+        <select class="form-select" name="rating" required>
+         <label for="Rating"><i class="fas fa-star"></i> Rating:-</label>
+            <option vulue="">Choose Rating</option>
+            <option value="⭐">⭐</option>
+            <option value="⭐⭐">⭐⭐</option>
+            <option value="⭐⭐⭐">⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
+            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
+        </select> 
+    </div>  
+    <div class="text-center mt-2">
+    <button class="btn btn-primary mx-auto"><i class="fas fa-lock">Submit</i></button>
+    </div>      
+        </form>
+     </div>
+    </div>
+    <!-- Footer code include here -->
+     {% include 'rent_app/common/footer.html/' %}
+
+    <!-- registration form code end here  -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

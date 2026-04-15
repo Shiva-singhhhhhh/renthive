@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    {% include 'rent_app/common/common_css.html' %}
+<style>
+    .reg-form{
+        background-color:#e7b3ec;
+        height: auto;
+        padding: 10px;
+        border: 5px solid #0f8bb1ea; 
+        border-radius: 10px;
+        margin: auto;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 40%;
+    }
+</style>
+</head>
+<body style="background-color: #ce3dbd;">
+{% if messages %}
+
+
+{% for m in messages%}
+<!-- <h1 style="margin-top: 80px;">{{m}}</h1> -->
+<div class="alert alert-secondary alert-dismissible fade show mx-auto text-center" role="alert" style="width: 50%;margin-top: 80px;">
+  <strong>{{m}}</strong> 
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
+
+
+{% endfor %}
+
+
+{% endif %}
+  <div class="main-div">
+      <!-- Header code include here -->
+    {% include 'rent_app/owner/owner_header.html'%}
+    <div class="container-fluid d-flex" style="background-color:#f9608d; justify-content: center;">
+    <span style=" margin-left: 20px;font-size: 30px; justify-content: center;">Registration Form</span>
+ </div> 
+ <!-- Registration Form Start From Here -->
+  <div class="reg-form">
+<form method="post" action="/owner_reg/" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+  <input type="Email" class="form-control" placeholder="Email" name="email" id="email">
+</div>
+<div class="input-group mb-3">
+    <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+    <input type="password" class="form-control" placeholder="password" name="password" id="password">
+</div>
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+  <input type="text" class="form-control" placeholder="name" name="name">
+</div><div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-mobile-button"></i></span>
+  <input type="phone" class="form-control" placeholder="phone" name="phone">
+</div>
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
+  <input type="text" class="form-control" placeholder="city" name="city">
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-map-pin"></i></span>
+  <textarea class="form-control" placeholder="address" name="address"></textarea>
+</div>
+<div class="form-floating mb-3">
+  <input type="file" class="form-control" name="profile_pic" placeholder="picture" required>
+  <label for="picture"> Insert Youe Picture Here</label>
+</div>
+<div class="text-center mt-2">
+<button class="btn btn-secondary mx-auto"><i class="fas fa-lock"> Login </i></button>
+</div>
+   </form>
+  </div>
+</div>
+  <!-- footer code included here -->
+ {% include 'rent_app/common/footer.html'%}
+
+ <!-- Registration Form Start End Here -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

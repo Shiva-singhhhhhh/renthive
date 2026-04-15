@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{% load static %}
+<!-- to load content from static content -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    {% include 'rent_app/common/common_css.html'   %}
+    <style>
+        .w-100{
+            height: 50vh;
+        }
+    </style>
+</head>
+<body style="background-color: rgba(235, 71, 213, 0.801);">
+    <div class="main-div">
+    <div class="container-fluid" style="background-color:#b35d60;">
+    <h2 style="color: aquamarine; text-align: center;"> 💕Rent Hive welcoming You💕</h2>
+    </div>
+    <!-- Header code included here -->
+    {% include 'rent_app/common/header.html'%}
+    <!-- carosle code start -->
+    <div id="carouselExample" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{%static 'rent_app/images/RentHive.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{%static 'rent_app/images/at-infinity-pi4a3mucMEA-unsplash.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{%static 'rent_app/images/virat kohli image 3.jpg'%}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+    <!-- carosle code end -->
+    </div>
+    <!-- footer code included here -->
+        {% include 'rent_app/common/footer.html'%}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+</html>

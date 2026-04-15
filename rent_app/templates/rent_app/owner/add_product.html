@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% include 'rent_app/common/common_css.html' %}
+
+    <style>
+      .flex-box{
+        display:flex;
+        background-color: lightgrey;
+        width:80%;
+        height:500px;
+        flex-direction: column;
+        margin-top:100px;
+        padding:100px;
+        margin:auto;
+      }
+    </style>
+
+    
+</head>
+<body>
+    
+    <div class="main-div">
+   <!-- header code include here -->
+  {% include 'rent_app/owner/owner_header.html'%}
+
+<div class="flex-box">
+  <div class="container-fluid text-center w-75" style="background-color: grey;font-family: Georgia;">
+    <h4>📝ADD PRODUCT📝</h4>
+  </div>
+<form action="/add_product/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+<div class="input-group mb-3 mt-3">
+  <span class="input-group-text"><i class="fa-brands fa-product-hunt"></i></span>
+  <input type="text" class="form-control" placeholder="Product_name" name="product_name" required>
+</div>
+
+<div class="mb-3">   
+  <select class="form-select" name="category" required>
+  <option value="select category">select category</option> 
+  <option value="Electronic Goods ">Electronic Goods</option>
+  <option value="Furniture">Furniture</option>
+  <!-- <option value="onethird">TV</option> -->
+</select>
+<label for="Category"></label>
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-comment"></i></span>
+  <input type="text-area" class="form-control" placeholder="Description" name="description" required>
+</div>
+
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-indian-rupee-sign"></i></span>
+  <input type="text" class="form-control" placeholder="Price" name="price" required>
+</div>
+
+<!-- <div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+  <input type="text" class="form-control" placeholder="book_class" name="book_class" required>
+</div> -->
+
+<div class="input-group mb-3">
+  <span class="input-group-text"><i class="fa-solid fa-file"></i></span>
+  <input type="file" class="form-control" placeholder="product_pic" name="product_pic" required>
+</div>
+<div class="text-center">
+    <button class="bg-danger">Submit</button>
+</div>
+</form>
+ </div>
+ </div>
+
+    <!-- FOOTER (optional) -->
+    {% include 'rent_app/common/footer.html' %}
+
+</body>
+</html>
