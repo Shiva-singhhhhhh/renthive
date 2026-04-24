@@ -2,58 +2,121 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contect us</title>
-    {% include 'rent_app/common/common_css.html'   %}
-<style>
-    .reg-form{
-        background-color: rgb(231, 122, 204);
-        height: 600px;
-        padding: 10px;
-        border: 5px solid rgba(236, 183, 102, 0.952); 
-        border-radius: 10px;
-        margin: auto;
-        margin-top: 50px;
-        width: 40%;
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Contact RentHive — Get in touch with us for support, queries, or partnership opportunities.">
+  <title>Contact Us — RentHive</title>
+  {% include 'rent_app/common/common_css.html' %}
 </head>
-<body style="background-color: aquamarine;">
-  <div class="main-div">
-      <!-- Header code include here -->
-    {% include 'rent_app/common/header.html'%}
-  <div class="reg-form">
-        <form action="/contact/" method="post">
-        {% csrf_token %}
-        <h6>Feel Free to Read us</h6>
-        <h1 class="text-center">Contact Us</h1>
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
-  <input type="text" class="form-control" placeholder="Name" name="Name">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-  <input type="Email" class="form-control" placeholder="Email" name="Email">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
-  <input type="Phone" class="form-control" placeholder="Phone" name="Phone">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text"></span>
-  <input type="question" class="form-control" placeholder="question" name="question">
-</div>
-<div class="text-center mt-2">
-<button class="btn btn-primary mx-auto"><i class="fas fa-lock">Submit</i></button>
-</div>
-    </form>
+<body>
+<div class="main-div">
+
+  <!-- Navbar -->
+  {% include 'rent_app/common/header.html' %}
+
+  <!-- Page Header -->
+  <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--surface) 100%); padding: 3rem 1.5rem 2rem; text-align:center;">
+    <div class="container">
+      <span class="rh-section-label"><i class="fa-solid fa-phone"></i> Get In Touch</span>
+      <h1 style="font-size:2.2rem; font-weight:800; color:var(--text-main); margin-top:0.5rem;">Contact <span class="text-accent">Us</span></h1>
+      <p style="color:var(--text-muted); max-width:480px; margin:0.8rem auto 0; font-size:0.9rem;">
+        We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+      </p>
+    </div>
   </div>
+
+  <!-- Contact Form Section -->
+  <section class="rh-form-section">
+    <div class="container">
+      <div class="row g-5 align-items-start justify-content-center">
+
+        <!-- Contact Info Cards -->
+        <div class="col-md-4 d-none d-md-block">
+          <div style="display:flex; flex-direction:column; gap:1.2rem; padding-top:1rem;">
+            <div style="background:var(--secondary); border:1px solid var(--glass-border); border-radius:14px; padding:1.5rem; display:flex; align-items:center; gap:14px;">
+              <div style="width:46px; height:46px; background:linear-gradient(135deg,var(--accent),#e08e0b); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <i class="fa-solid fa-envelope" style="color:var(--primary);"></i>
+              </div>
+              <div>
+                <div style="font-weight:700; font-size:0.9rem; margin-bottom:2px;">Email Us</div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">support@renthive.in</div>
+              </div>
+            </div>
+            <div style="background:var(--secondary); border:1px solid var(--glass-border); border-radius:14px; padding:1.5rem; display:flex; align-items:center; gap:14px;">
+              <div style="width:46px; height:46px; background:linear-gradient(135deg,var(--accent),#e08e0b); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <i class="fa-solid fa-phone" style="color:var(--primary);"></i>
+              </div>
+              <div>
+                <div style="font-weight:700; font-size:0.9rem; margin-bottom:2px;">Call Us</div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">+91 98765 43210</div>
+              </div>
+            </div>
+            <div style="background:var(--secondary); border:1px solid var(--glass-border); border-radius:14px; padding:1.5rem; display:flex; align-items:center; gap:14px;">
+              <div style="width:46px; height:46px; background:linear-gradient(135deg,var(--accent),#e08e0b); border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0;">
+                <i class="fa-solid fa-clock" style="color:var(--primary);"></i>
+              </div>
+              <div>
+                <div style="font-weight:700; font-size:0.9rem; margin-bottom:2px;">Working Hours</div>
+                <div style="font-size:0.82rem; color:var(--text-muted);">Mon–Sat, 9 AM – 6 PM</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-md-6">
+          <div class="rh-form-card" style="max-width:100%;">
+            <div class="form-icon"><i class="fa-solid fa-paper-plane"></i></div>
+            <h2 class="form-title">Send a Message</h2>
+            <p class="form-subtitle">Feel free to reach out — we're always happy to help.</p>
+
+            <!-- Django Form — action/name preserved exactly -->
+            <form action="/contact/" method="post">
+              {% csrf_token %}
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa-solid fa-user"></i></span>
+                  <input type="text" class="form-control" placeholder="Your Name" name="Name">
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+                  <input type="Email" class="form-control" placeholder="Your Email" name="Email">
+                </div>
+              </div>
+
+              <div class="mb-3">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa-solid fa-phone"></i></span>
+                  <input type="Phone" class="form-control" placeholder="Your Phone" name="Phone">
+                </div>
+              </div>
+
+              <div class="mb-4">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fa-solid fa-message"></i></span>
+                  <input type="question" class="form-control" placeholder="Your message or question" name="question">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-submit">
+                <i class="fa-solid fa-paper-plane me-2"></i>Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 </div>
 
-  <!-- footer code included here -->
- {% include 'rent_app/common/footer.html'%}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

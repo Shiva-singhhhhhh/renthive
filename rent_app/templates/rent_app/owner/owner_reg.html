@@ -2,89 +2,101 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-    {% include 'rent_app/common/common_css.html' %}
-<style>
-    .reg-form{
-        background-color:#e7b3ec;
-        height: auto;
-        padding: 10px;
-        border: 5px solid #0f8bb1ea; 
-        border-radius: 10px;
-        margin: auto;
-        margin-top: 50px;
-        margin-bottom: 50px;
-        width: 40%;
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Registration — RentHive</title>
+  {% include 'rent_app/common/common_css.html' %}
 </head>
-<body style="background-color: #ce3dbd;">
-{% if messages %}
+<body>
+<div class="main-div">
+  {% include 'rent_app/owner/owner_header.html' %}
 
+  <!-- Messages -->
+  {% if messages %}
+    <div class="container" style="max-width:540px; margin-top:5.5rem;">
+      {% for m in messages %}
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+          <i class="fa-solid fa-circle-check me-2"></i><strong>{{ m }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-{% for m in messages%}
-<!-- <h1 style="margin-top: 80px;">{{m}}</h1> -->
-<div class="alert alert-secondary alert-dismissible fade show mx-auto text-center" role="alert" style="width: 50%;margin-top: 80px;">
-  <strong>{{m}}</strong> 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> 
+  <section class="rh-form-section" style="padding-top:5rem;">
+    <div class="rh-form-card" style="max-width:540px;">
+      <div class="form-icon"><i class="fa-solid fa-building-user"></i></div>
+      <h2 class="form-title">Register as Owner</h2>
+      <p class="form-subtitle">List your products and start earning on RentHive</p>
 
+      <!-- action/field names preserved exactly -->
+      <form method="post" action="/owner_reg/" enctype="multipart/form-data">
+        {% csrf_token %}
 
-{% endfor %}
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+            <input type="Email" class="form-control" placeholder="Email Address" name="email" id="email">
+          </div>
+        </div>
 
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+            <input type="password" class="form-control" placeholder="Password" name="password" id="password">
+          </div>
+        </div>
 
-{% endif %}
-  <div class="main-div">
-      <!-- Header code include here -->
-    {% include 'rent_app/owner/owner_header.html'%}
-    <div class="container-fluid d-flex" style="background-color:#f9608d; justify-content: center;">
-    <span style=" margin-left: 20px;font-size: 30px; justify-content: center;">Registration Form</span>
- </div> 
- <!-- Registration Form Start From Here -->
-  <div class="reg-form">
-<form method="post" action="/owner_reg/" enctype="multipart/form-data">
-  {% csrf_token %}
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-  <input type="Email" class="form-control" placeholder="Email" name="email" id="email">
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
+            <input type="text" class="form-control" placeholder="Full Name" name="name">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-mobile-button"></i></span>
+            <input type="phone" class="form-control" placeholder="Phone Number" name="phone">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
+            <input type="text" class="form-control" placeholder="City" name="city">
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-map-pin"></i></span>
+            <textarea class="form-control" placeholder="Full Address" name="address" rows="2"></textarea>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label style="display:block; margin-bottom:6px; font-size:0.85rem; color:var(--text-muted);">
+            <i class="fa-solid fa-image me-1"></i> Profile Picture
+          </label>
+          <input type="file" class="form-control" name="profile_pic" placeholder="picture" required>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fa-solid fa-building me-2"></i>Register as Owner
+        </button>
+      </form>
+
+      <div style="text-align:center; margin-top:1.5rem; font-size:0.88rem; color:var(--text-muted);">
+        Already registered?
+        <a href="/owner_login/" style="color:var(--accent); font-weight:600; text-decoration:none;"> Login here</a>
+      </div>
+    </div>
+  </section>
 </div>
-<div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-    <input type="password" class="form-control" placeholder="password" name="password" id="password">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-  <input type="text" class="form-control" placeholder="name" name="name">
-</div><div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-mobile-button"></i></span>
-  <input type="phone" class="form-control" placeholder="phone" name="phone">
-</div>
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-city"></i></span>
-  <input type="text" class="form-control" placeholder="city" name="city">
-</div>
 
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-map-pin"></i></span>
-  <textarea class="form-control" placeholder="address" name="address"></textarea>
-</div>
-<div class="form-floating mb-3">
-  <input type="file" class="form-control" name="profile_pic" placeholder="picture" required>
-  <label for="picture"> Insert Youe Picture Here</label>
-</div>
-<div class="text-center mt-2">
-<button class="btn btn-secondary mx-auto"><i class="fas fa-lock"> Login </i></button>
-</div>
-   </form>
-  </div>
-</div>
-  <!-- footer code included here -->
- {% include 'rent_app/common/footer.html'%}
-
- <!-- Registration Form Start End Here -->
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

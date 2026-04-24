@@ -2,67 +2,70 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    {% include 'rent_app/common/common_css.html' %}
-<style>
-    .reg-form{
-        background-color: #f03f32;
-        height: auto;
-        padding: 10px;
-        border: 5px solid #5f2c00; 
-        border-radius: 10px;
-        margin: auto;
-        margin-top: 50px;
-        width: 40%;
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Login — RentHive</title>
+  {% include 'rent_app/common/common_css.html' %}
 </head>
-<body style="background-color: #826611;">
-  <div class="main-div">
-      <!-- Header code include here -->
-    {% include 'rent_app/common/header.html'%}
-{% if messages %}
+<body>
+<div class="main-div">
+  {% include 'rent_app/common/header.html' %}
 
+  <!-- Messages -->
+  {% if messages %}
+    <div class="container" style="max-width:500px; margin-top:1.5rem;">
+      {% for m in messages %}
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+          <i class="fa-solid fa-circle-info me-2"></i><strong>{{ m }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-{% for m in messages%}
-<!-- <h1 style="margin-top: 80px;">{{m}}</h1> -->
-<div class="alert alert-secondary alert-dismissible fade show mx-auto text-center" role="alert" style="width: 50%;margin-top: 80px;">
-  <strong>{{m}}</strong> 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> 
+  <!-- Form Section -->
+  <section class="rh-form-section">
+    <div class="rh-form-card">
+      <div class="form-icon"><i class="fa-solid fa-right-to-bracket"></i></div>
+      <h2 class="form-title">Welcome Back</h2>
+      <p class="form-subtitle">Sign in to your RentHive user account</p>
 
+      <!-- Form fields and action preserved exactly -->
+      <form action="/user_login/" method="post">
+        {% csrf_token %}
 
-{% endfor %}
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+            <input type="Email" class="form-control" placeholder="Email Address" name="email">
+          </div>
+        </div>
 
+        <div class="mb-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+            <input type="Password" class="form-control" placeholder="Password" name="password">
+          </div>
+        </div>
 
-{% endif %}
-  <div class="container-fluid d-flex" style="background-color:#f9608d; justify-content: center;">
-  <span style=" margin-left: 20px;font-size: 30px; justify-content: center;">Login Form</span>
- </div>
-  <div class="reg-form">
-<form action="/user_login/" method="post">
-   {% csrf_token %}
+        <button type="submit" class="btn-submit">
+          <i class="fa-solid fa-lock me-2"></i>Sign In
+        </button>
+      </form>
 
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-  <input type="Email" class="form-control" placeholder="Email" name="email">
+      <div style="text-align:center; margin-top:1.5rem; font-size:0.88rem; color:var(--text-muted);">
+        Don't have an account?
+        <a href="/user_reg/" style="color:var(--accent); font-weight:600; text-decoration:none;"> Register here</a>
+      </div>
+      <div style="text-align:center; margin-top:0.6rem; font-size:0.85rem; color:var(--text-muted);">
+        Owner? <a href="/owner_login/" style="color:var(--accent); font-weight:600; text-decoration:none;">Owner Login →</a>
+      </div>
+    </div>
+  </section>
 </div>
-<div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-    <input type="Password" class="form-control" placeholder="Password" name="password">
-</div>
-<div class="text-center mt-2">
-<button class="btn btn-secondary mx-auto"><i class="fas fa-lock">Submit</i></button>
-</div>
-    </form>
-  </div>
-</div>
 
-  <!-- footer code included here -->
- {% include 'rent_app/common/footer.html'%}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

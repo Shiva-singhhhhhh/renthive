@@ -1,57 +1,61 @@
-<nav class="navbar navbar-dark  fixed-top" style="background-color: #68083d;">
-        <div class="container-fluid">
-          <!-- <a class="navbar-brand" href="#">Logo</a>  -->
-          <button   class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel" style="background-color: #0a4149;">
-            <div class="offcanvas-header">
-              <h3 class="offcanvas-title" id="offcanvasDarkNavbarLabel" style="color: white;"><b>Hello User</b></h3>
-              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
-                    
-                    <i class="fas fa-home"></i>  Home</a>
-                </li>
-              
-        
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/user_feedback/">FeedBack</a>
-                </li>
-                <!-- <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/add_product/">Add Product</a>
-                </li> -->
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="/view_product/">View Product</a>
-                </li>
-                <li class="nav-item">
- <a class="nav-link active" aria-current="page" href="/user_logout/">Logout</a>
-                </li>
-                <!-- <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <b>Dropdown</b>
-                  </a>
-                  <ul class="dropdown-menu dropdown-menu-dark">
-                    <li><a class="dropdown-item" href="#">Link1</a></li>
-                    <li><a class="dropdown-item" href="#">Link2</a></li>
-                    <li><a class="dropdown-item" href="#">Link3</a></li>
-                    <li><a class="dropdown-item" href="#">Link4</a></li>
-                    
-                    <li>
-                      <hr class="dropdown-divider">
-                    </li>
-                    
-                  </ul>
-                </li> -->
-              </ul>
-             <!--  <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-              </form> -->
-            </div>
-          </div>
+{% load static %}
+<!-- ════════════════════════════════════════
+     USER DASHBOARD NAVBAR — RentHive
+     ════════════════════════════════════════ -->
+<nav class="rh-dash-navbar navbar navbar-dark">
+  <div class="container-fluid">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/user_home/" style="display:flex; align-items:center; gap:10px;">
+      <!-- Compact inline SVG logo -->
+      <svg width="28" height="28" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+        <polygon points="18,2 32,10 32,26 18,34 4,26 4,10" fill="#F5A623" stroke="#e08e0b" stroke-width="1.2"/>
+        <polygon points="18,10 27,17 9,17" fill="#1A1A2E"/>
+        <rect x="11" y="17" width="14" height="10" rx="1" fill="#1A1A2E"/>
+        <rect x="15.5" y="21" width="5" height="6" rx="0.8" fill="#F5A623"/>
+        <rect x="22" y="11" width="2.5" height="4" rx="0.5" fill="#1A1A2E"/>
+      </svg>
+      <span>Rent<span style="font-weight:400; opacity:0.7;">Hive</span> <span style="font-size:0.75rem; opacity:0.55;">· User</span></span>
+    </a>
+
+    <!-- Toggler -->
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Offcanvas Sidebar -->
+    <div class="offcanvas offcanvas-end rh-offcanvas" tabindex="-1" id="offcanvasDarkNavbar"
+      aria-labelledby="offcanvasDarkNavbarLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">
+          <i class="fa-solid fa-user me-2"></i>My Account
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul class="navbar-nav flex-grow-1">
+          <li class="nav-item">
+            <a class="nav-link" href="/user_home/">
+              <i class="fas fa-home"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/view_product/">
+              <i class="fa-solid fa-box-open"></i> View Products
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/user_feedback/">
+              <i class="fa-solid fa-star"></i> Give FeedBack
+            </a>
+          </li>
+          <li class="nav-item" style="margin-top:auto; border-top:1px solid var(--glass-border); padding-top:0.5rem;">
+            <a class="nav-link" href="/user_logout/" style="color:var(--danger) !important;">
+              <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
 </nav>

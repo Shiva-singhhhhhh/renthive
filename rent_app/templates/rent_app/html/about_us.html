@@ -2,21 +2,80 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us</title>
-    {% include 'rent_app/common/common_css.html'   %}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About RentHive — Learn about our mission, team, and vision for the rental economy.">
+  <title>About Us — RentHive</title>
+  {% include 'rent_app/common/common_css.html' %}
 </head>
-<body style="background-color: cadetblue;">
-    <div class="main-div">
-    <!-- Header code included here -->
-    {% include 'rent_app/common/header.html'%}
-    <h1> This is About Us Page </h1>
-    <img src="{% static 'rent_app/images/about us.jpeg' %}" alt="">
-    </div>
-    <!-- footer code included here -->
-    {% include 'rent_app/common/footer.html'%}
+<body>
+<div class="main-div">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  <!-- Navbar -->
+  {% include 'rent_app/common/header.html' %}
+
+  <!-- About Hero -->
+  <div style="background: linear-gradient(135deg, var(--primary) 0%, var(--surface) 100%); padding: 3.5rem 1.5rem 2rem; text-align:center;">
+    <div class="container">
+      <span class="rh-section-label"><i class="fa-solid fa-circle-info"></i> Our Story</span>
+      <h1 style="font-size:2.2rem; font-weight:800; color:var(--text-main); margin-top:0.5rem;">About <span class="text-accent">RentHive</span></h1>
+      <p style="color:var(--text-muted); max-width:540px; margin:0.8rem auto 0; font-size:0.95rem; line-height:1.7;">
+        We're on a mission to make renting simple, trustworthy, and accessible for everyone.
+      </p>
+    </div>
+  </div>
+
+  <!-- About Content -->
+  <section class="rh-about-section">
+    <div class="container">
+      <div class="rh-about-card">
+        <div class="row g-4 align-items-center">
+          <div class="col-md-5 text-center">
+            <img src="{% static 'rent_app/images/about us.jpeg' %}" class="about-image" alt="About Rent Hive">
+          </div>
+          <div class="col-md-7">
+            <span class="rh-section-label"><i class="fa-solid fa-handshake"></i> Who We Are</span>
+            <h2>Building a Better Rental Economy</h2>
+            <p>
+              RentHive is a peer-to-peer rental marketplace that connects people who have things with 
+              people who need them. Whether you're looking to rent electronics, furniture, or everyday 
+              items, we make the process seamless and secure.
+            </p>
+            <p style="margin-top:1rem;">
+              Founded by Shiva Singh, we believe that ownership shouldn't be a 
+              prerequisite for access. Our platform empowers owners to monetize unused assets and 
+              helps renters save money while getting exactly what they need.
+            </p>
+            <div class="row g-3 mt-3">
+              <div class="col-6">
+                <div style="background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:12px; padding:1rem; text-align:center;">
+                  <i class="fa-solid fa-users" style="color:var(--accent); font-size:1.4rem;"></i>
+                  <div style="font-weight:700; font-size:1.2rem; color:var(--text-main); margin-top:4px;">500+</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Active Users</div>
+                </div>
+              </div>
+              <div class="col-6">
+                <div style="background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:12px; padding:1rem; text-align:center;">
+                  <i class="fa-solid fa-box-open" style="color:var(--accent); font-size:1.4rem;"></i>
+                  <div style="font-weight:700; font-size:1.2rem; color:var(--text-main); margin-top:4px;">200+</div>
+                  <div style="font-size:0.78rem; color:var(--text-muted);">Products Listed</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:1.5rem;">
+              <a href="/user_reg/" class="btn-rh-primary me-2"><i class="fa-solid fa-rocket"></i> Get Started</a>
+              <a href="/contact/" class="btn-rh-outline"><i class="fa-solid fa-envelope"></i> Contact Us</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

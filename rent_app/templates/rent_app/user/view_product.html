@@ -1,64 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> View Product </title>
+  <title>Browse Products — RentHive</title>
   {% include 'rent_app/common/common_css.html' %}
-  <style>
-    .flex-item {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-  </style>
 </head>
-
 <body>
-  <div class="main-div">
-    <!-- header code include here -->
-    {% include 'rent_app/user/user_header.html' %}
-    <div class="container-fluid text-center w-75" style="font-family: Georgia;">
-      <h2 style="margin-top: 80px;">📝View Product📝</h2>
-      <div class="flex-item">
-        <form action="/view_product/" method="post">
-          {% csrf_token %}
-          <select class="form-select" name="category" required>
-            <option value="select category">select category</option>
-            <option value="Electronic Goods ">Electronic Goods</option>
-            <option value="Furniture">Furniture</option>
-          </select>
-          <button type="submit"><i class="fa-solid fa-magnifying-glass"></i>Search </button>
-        </form>
-        {%for p in product_key %}
-        <!-- card code start from here -->
-        <div class="card" style="width: 10rem;">
-          <img src="/media/{{p.product_pic}}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Product Name:-{{p.product_name}}</h5>
-            <p class="card-text">Description:-{{p.product_description}}</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Category:-{{p.product_category}}</li>
-            <li class="list-group-item">Price:-{{p.product_price}}</li>
-            <button class="btn btn-secondary"><a style="text-decoration: none; color: white;" href="https://wa.me/+91{{p.owner.phone}}">Whatsapp </a></button>
-          </ul>
-        </div>
-        {%endfor%}
-        <!-- card code end from here -->
-      </div>
+<div class="main-div rh-dash-body">
+  {% include 'rent_app/user/user_header.html' %}
+
+  <div class="rh-dash-container">
+
+    <div class="rh-page-header">
+      <h1><i class="fa-solid fa-box-open me-2" style="color:var(--accent);"></i>Browse Products</h1>
+      <p>Search and filter rental products from verified owners.</p>
     </div>
+
+    <!-- Filter bar — action/name preserved exactly -->
+    <div class="rh-filter-bar">
+      <form action="/view_product/" method="post" style="display:flex; gap:1rem; flex-wrap:wrap; width:100%; align-items:center;">
+        {% csrf_token %}
+        <select class="form-select" name="category" required style="flex:1; min-width:200px;">
+          <option value="select category">Select Category</option>
+          <option value="Electronic Goods ">Electronic Goods</option>
+          <option value="Furniture">Furniture</option>
+        </select>
+        <button type="submit" class="btn-rh-primary">
+          <i class="fa-solid fa-magnifying-glass"></i> Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Products grid -->
+    {% if product_key %}
+      <div class="rh-product-grid">
+        {% for p in product_key %}
+        <div class="rh-product-card">
+          <img src="/media/{{ p.product_pic }}" alt="{{ p.product_name }}"
+            onerror="this.src='https://via.placeholder.com/240x180?text=No+Image';">
+          <div class="card-body">
+            <div class="product-name"><i class="fa-solid fa-tag me-1" style="color:var(--accent); font-size:0.8rem;"></i>{{ p.product_name }}</div>
+            <div class="product-desc">{{ p.product_description }}</div>
+            <div class="product-meta">
+              <span class="product-price"><i class="fa-solid fa-indian-rupee-sign" style="font-size:0.85rem;"></i> {{ p.product_price }}/day</span>
+              <span class="product-cat">{{ p.product_category }}</span>
+            </div>
+            <a href="https://wa.me/+91{{ p.owner.phone }}" class="btn-wa" target="_blank">
+              <i class="fa-brands fa-whatsapp" style="font-size:1rem;"></i> Contact Owner
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <!-- Empty / pre-search state -->
+      <div style="text-align:center; padding:4rem 1rem;">
+        <div style="width:80px; height:80px; background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 1.5rem; font-size:2rem; color:var(--accent);">
+          <i class="fa-solid fa-box-open"></i>
+        </div>
+        <h3 style="color:var(--text-main); font-weight:700; margin-bottom:0.5rem;">Select a Category to Browse</h3>
+        <p style="color:var(--text-muted);">Choose a category above and hit Search to find available rentals.</p>
+      </div>
+    {% endif %}
+
   </div>
+</div>
 
-
-  <!-- FOOTER (optional) -->
-  {% include 'rent_app/common/footer.html' %}
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-    crossorigin="anonymous"></script>
-
-
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
-
 </html>

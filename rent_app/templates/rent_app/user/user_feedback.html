@@ -2,89 +2,85 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FeedBack Form</title>
-    {% include 'rent_app/common/common_css.html'   %}
-    <style>
-    .feedback-form{
-        background-color:#8785A2;
-        height: auto;
-        padding: 10px;
-        border: 5px solid #5f2c00; 
-        border-radius: 10px;
-        margin: auto;
-        margin-top: 50px;
-        width: 40%;
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Feedback — RentHive</title>
+  {% include 'rent_app/common/common_css.html' %}
 </head>
-<body style="background-color:#E5E0D8;">
-{% if messages %}
+<body>
+<div class="main-div rh-dash-body">
+  {% include 'rent_app/user/user_header.html' %}
 
-
-{% for m in messages%}
-<!-- <h1 style="margin-top: 80px;">{{m}}</h1> -->
-<div class="alert alert-secondary alert-dismissible fade show mx-auto text-center" role="alert" style="width: 50%;margin-top: 80px;">
-  <strong>{{m}}</strong> 
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div> 
-
-
-{% endfor %}
-
-
-{% endif %}
-
-  <div class="main-div">
-    <!-- header code include here -->
-    {% include 'rent_app/user/user_header.html' %}
-    <div class="container-fluid d-flex" style="background-color: #93DA97; justify-content: center;margin-top: 80px;">
-    <span style="margin-left: 20px; font-size: 30px; justify-content: center;"></span>
-    <h1>📝FeedBack Form📝</h1>
+  <!-- Messages -->
+  {% if messages %}
+    <div class="container" style="max-width:520px; margin-top:5rem;">
+      {% for m in messages %}
+        <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+          <i class="fa-solid fa-circle-check me-2"></i><strong>{{ m }}</strong>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endfor %}
     </div>
-    <div class="container-fluid d-flex" style="background-color: #eef0e9; justify-content: center;">
-    <span style="margin-left: 20px; font-size: 30px; justify-content: center;"></span>
-    <h4> “Your voice matters to us.” </h4>
-    </div>
-    <!-- FeedBack form code -->
-     <div class="feedback-form">
-        <form action="/user_feedback/" method="post">
+  {% endif %}
+
+  <section class="rh-form-section" style="padding-top:5rem;">
+    <div class="rh-form-card" style="max-width:520px;">
+      <div class="form-icon"><i class="fa-solid fa-star"></i></div>
+      <h2 class="form-title">Leave a Review</h2>
+      <p class="form-subtitle">"Your voice matters to us." — Share your experience!</p>
+
+      <!-- action/field names preserved exactly -->
+      <form action="/user_feedback/" method="post">
         {% csrf_token %}
-        <input type="hidden" name="pic_path" value={{user_detail.profile_pic}}>
-     <div class="form-floating mb-3">
-        <input type="email" class="form-control" name="email" placeholder="Email"required value={{user_detail.email}} readonly>
-        <label for="email"><i class="fas fa-envelope"></i> Enter Your Email</label>
-     </div>
-     <div class="form-floating mb-3">
-        <input type="Name" class="form-control" name="name" placeholder="Name"required value="{{user_detail.name}}">
-        <label for="name"><i class="fas fa-user"></i> Enter Your Name</label>
-     </div>
-    <div class="form-floating mb-3">
-  <input type="text" class="form-control" name="remark" placeholder="remark" required>
-    <label for="remark"><i class="fas fa-pen"></i> Remark Us:- </label>
-    </div>
-    <div class="form-floating mb-3"> 
-        <select class="form-select" name="rating" required>
-         <label for="Rating"><i class="fas fa-star"></i> Rating:-</label>
-            <option vulue="">Choose Rating</option>
-            <option value="⭐">⭐</option>
-            <option value="⭐⭐">⭐⭐</option>
-            <option value="⭐⭐⭐">⭐⭐⭐</option>
-            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐</option>
-            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐</option>
-        </select> 
-    </div>  
-    <div class="text-center mt-2">
-    <button class="btn btn-primary mx-auto"><i class="fas fa-lock">Submit</i></button>
-    </div>      
-        </form>
-     </div>
-    </div>
-    <!-- Footer code include here -->
-     {% include 'rent_app/common/footer.html/' %}
+        <input type="hidden" name="pic_path" value="{{ user_detail.profile_pic }}">
 
-    <!-- registration form code end here  -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+        <div class="mb-3">
+          <div class="form-floating">
+            <input type="email" class="form-control" name="email" placeholder="Email" required
+              value="{{ user_detail.email }}" readonly id="fb-email">
+            <label for="fb-email"><i class="fas fa-envelope me-1"></i> Email Address</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-floating">
+            <input type="Name" class="form-control" name="name" placeholder="Name" required
+              value="{{ user_detail.name }}" id="fb-name">
+            <label for="fb-name"><i class="fas fa-user me-1"></i> Your Name</label>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-floating">
+            <input type="text" class="form-control" name="remark" placeholder="remark" required id="fb-remark">
+            <label for="fb-remark"><i class="fas fa-pen me-1"></i> Your Review</label>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label style="display:block; font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">
+            <i class="fas fa-star me-1"></i> Rating
+          </label>
+          <select class="form-select" name="rating" required>
+            <option value="">Choose your Rating</option>
+            <option value="⭐">⭐ — Poor</option>
+            <option value="⭐⭐">⭐⭐ — Fair</option>
+            <option value="⭐⭐⭐">⭐⭐⭐ — Good</option>
+            <option value="⭐⭐⭐⭐">⭐⭐⭐⭐ — Very Good</option>
+            <option value="⭐⭐⭐⭐⭐">⭐⭐⭐⭐⭐ — Excellent</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fa-solid fa-paper-plane me-2"></i>Submit Review
+        </button>
+      </form>
+    </div>
+  </section>
+</div>
+
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>

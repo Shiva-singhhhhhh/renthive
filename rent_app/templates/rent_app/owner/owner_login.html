@@ -2,51 +2,57 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Form</title>
-    {% include 'rent_app/common/common_css.html' %}
-<style>
-    .reg-form{
-        background-color: #f03f32;
-        height: auto;
-        padding: 10px;
-        border: 5px solid #5f2c00; 
-        border-radius: 10px;
-        margin: auto;
-        margin-top: 50px;
-        width: 40%;
-    }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Owner Login — RentHive</title>
+  {% include 'rent_app/common/common_css.html' %}
 </head>
-<body style="background-color: #826611;">
-  <div class="main-div">
-      <!-- Header code include here -->
-    {% include 'rent_app/owner/owner_header.html'%}
-  <div class="container-fluid d-flex" style="background-color:#f9608d; justify-content: center;">
-  <span style=" margin-left: 20px;font-size: 30px; justify-content: center;">Login Form</span>
- </div>
-  <div class="reg-form">
-<form action="/owner_login/" method="post">
-  {% csrf_token %}
-<div class="input-group mb-3">
-  <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
-  <input type="Email" class="form-control" placeholder="Email" name="email">
-</div>
-<div class="input-group mb-3">
-    <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
-    <input type="Password" class="form-control" placeholder="Password" name="password">
-</div>
-<div class="text-center mt-2">
-<button class="btn btn-secondary mx-auto"><i class="fas fa-lock">Submit</i></button>
-</div>
-    </form>
-  </div>
+<body>
+<div class="main-div">
+  {% include 'rent_app/owner/owner_header.html' %}
+
+  <section class="rh-form-section" style="padding-top:5rem;">
+    <div class="rh-form-card">
+      <div class="form-icon"><i class="fa-solid fa-building"></i></div>
+      <h2 class="form-title">Owner Login</h2>
+      <p class="form-subtitle">Access your RentHive owner dashboard</p>
+
+      <!-- action/fields preserved exactly -->
+      <form action="/owner_login/" method="post">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-envelope"></i></span>
+            <input type="Email" class="form-control" placeholder="Email Address" name="email">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fa-solid fa-key"></i></span>
+            <input type="Password" class="form-control" placeholder="Password" name="password">
+          </div>
+        </div>
+
+        <button type="submit" class="btn-submit">
+          <i class="fa-solid fa-lock me-2"></i>Sign In as Owner
+        </button>
+      </form>
+
+      <div style="text-align:center; margin-top:1.5rem; font-size:0.88rem; color:var(--text-muted);">
+        New owner?
+        <a href="/owner_reg/" style="color:var(--accent); font-weight:600; text-decoration:none;"> Register here</a>
+      </div>
+      <div style="text-align:center; margin-top:0.6rem; font-size:0.85rem; color:var(--text-muted);">
+        Renter? <a href="/user_login/" style="color:var(--accent); font-weight:600; text-decoration:none;">User Login →</a>
+      </div>
+    </div>
+  </section>
 </div>
 
-  <!-- footer code included here -->
- {% include 'rent_app/common/footer.html'%}
-
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+{% include 'rent_app/common/footer.html' %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
 </body>
 </html>
